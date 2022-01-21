@@ -22,6 +22,8 @@ function initNavControls() {
     if (itemUrl === pageUrl || itemTitle === pageParent || itemTitle == pageGrandParent) {
       navItem.classList.add('active')
       navItem.querySelector('.nav-list-link').classList.add('active')
+
+      navItem.scrollIntoView()
     }
   }
 }
