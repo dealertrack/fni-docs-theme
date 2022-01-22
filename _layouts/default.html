@@ -62,7 +62,7 @@ layout: table_wrappers
           {% endif %}
         {% endfor %}
       {% else %}
-        {% include_cached nav.html pages=site.html_pages %}
+        {% include_cached nav.html nav=layout.nav %}
       {% endif %}
     </nav>
     <footer class="site-footer">&copy;{{ 'now' | date: "%Y" }} Cox Automotive</footer>
@@ -137,10 +137,9 @@ layout: table_wrappers
 
         {% if page.has_children == true and page.has_toc != false %}
           <hr>
-          <h2 class="text-delta">Table of contents</h2>
+          <h2 class="text-delta">Subtopics</h2>
           <ul>
-            {%- assign children_list = pages_list | where: "parent", page.title | where: "grand_parent", page.parent -%}
-            {% for child in children_list %}
+            {% for child in page.nav %}
               <li>
                 <a href="{{ child.url | absolute_url }}">{{ child.title }}</a>{% if child.summary %} - {{ child.summary }}{% endif %}
               </li>
