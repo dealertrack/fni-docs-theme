@@ -4,8 +4,6 @@ module NavGenerator
     # TODO: If a new page is added to the site, need to hook into incremental rebuild and flush nav.html cache
     def generate(site)
       nav = nav_for_parent(site.pages, nil)
-
-      puts nav
       
       # Attach nav data to the default layout
       site.layouts['default'].data['nav'] = nav
