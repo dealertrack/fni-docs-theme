@@ -1,0 +1,25 @@
+
+// Style iuml diagrams
+.plantuml-diagram {
+  position: relative;
+  color: #333;
+
+  svg {
+      border: 2px solid #444;
+  }
+
+  .error-msg {
+      margin: 1em;
+      padding: 0.5em;
+      background-color: #fdd;
+      border: 1px solid #922;
+  }
+
+  .plantuml-diagram-open {
+      position: absolute;
+      right: 5px;
+      bottom: 8px;
+      font-size: smaller;
+  }
+}
+  

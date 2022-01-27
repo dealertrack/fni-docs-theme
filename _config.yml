@@ -111,3 +111,7 @@ kramdown:
 
 plugins:
   - jekyll-include-cache
+  - fni-docs-theme
+
+plantuml:
+  server_uri: http://plantuml-server-alb-1437627871.us-east-1.elb.amazonaws.com #http://www.plantuml.com/plantuml/
