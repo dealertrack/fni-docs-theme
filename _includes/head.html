@@ -29,10 +29,17 @@
   {% if site.search_enabled != false %}
     <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.min.js' | relative_url }}"></script>
   {% endif %}
+
+  <script src="https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>  
+
   <script type="text/javascript" src="{{ '/assets/js/just-the-docs.js' | relative_url }}"></script>
+  <script type="text/javascript" src="{{ '/assets/js/jtd-nav.js' | relative_url }}"></script>
+  <script type="text/javascript" src="{{ '/assets/js/links.js' | relative_url }}"></script>
+  <script type="text/javascript" src="{{ '/assets/js/plantuml.js' | relative_url }}"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {% include head_custom.html %}
+  {% include_cached head_custom.html %}
 
 </head>

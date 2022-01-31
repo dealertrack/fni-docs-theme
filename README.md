@@ -2,17 +2,36 @@
 
 Forked from [just-the-docs](https://pmarsceill.github.io/just-the-docs/)
 
+Pertinent differences:
+* Nav generation has been moved to a plugin, lib/generators/nav-generator. This ensures the nav is only generated once and can be included 
+
 ## Installation
 
-Add this line to your Jekyll site's `_config.yml`:
+This theme is distributed as a Jekyll plugin, to install:
+
+* Add the plugin to your gemfile (recommend pinning a specific version):
+```ruby
+group :jekyll_plugins do
+  gem "fni-docs-theme", "0.4.2"
+end
+```
+
+Add these lines to your Jekyll site's `_config.yml`:
 
 ```yaml
-remote_theme: dealertrack/fni-docs-theme
+theme: fni-docs-theme
+
+plugins:
+  - fni-docs-theme
 ```
 
 ## Usage
 
 [View the documentation](https://pmarsceill.github.io/just-the-docs/) for usage information.
+
+## Publishing
+
+This theme/plugin is published as fni-docs-theme to rubygems.org.
 
 ## License
 

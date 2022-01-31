@@ -99,12 +99,19 @@ kramdown:
     block:
       line_numbers: false
 
-compress_html:
-  clippings: all
-  comments: all
-  endings: all
-  startings: []
-  blanklines: false
-  profile: false
+# compress_html:
+#   clippings: all
+#   comments: all
+#   endings: all
+#   startings: []
+#   blanklines: false
+#   profile: false
   # ignore:
   #   envs: all
+
+plugins:
+  - jekyll-include-cache
+  - fni-docs-theme
+
+plantuml:
+  server_uri: http://www.plantuml.com/plantuml/
