@@ -31,8 +31,8 @@
   }
 
   @include mq(lg) {
-    margin-left: $nav-width;
     max-width: 100%;
+    margin-left: $nav-width;
   }
 }
 
