@@ -107,7 +107,6 @@
 
   @include mq(md) {
     top: 100%;
-    // width: $search-results-width;
     max-height: calc(100vh - 200%) !important;
   }
 }
