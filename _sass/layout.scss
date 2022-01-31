@@ -19,8 +19,7 @@
   }
 
   @include mq(lg) {
-    width: calc((100% - #{$nav-width + $content-width}) / 2 + #{$nav-width});
-    min-width: $nav-width;
+    width: $nav-width;
   }
 }
 
@@ -32,9 +31,8 @@
   }
 
   @include mq(lg) {
-    margin-left: calc(
-      (100% - #{$nav-width + $content-width}) / 2 + #{$nav-width}
-    );
+    max-width: 100%;
+    margin-left: $nav-width;
   }
 }
 
@@ -75,10 +73,6 @@
 .site-header,
 .site-footer {
   width: 100%;
-
-  @include mq(lg) {
-    width: $nav-width;
-  }
 }
 
 .site-nav {
