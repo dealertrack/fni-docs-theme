@@ -41,6 +41,10 @@ Access the site at http://localhost:4000/fni-docs-theme/
 
 This theme/plugin is published as fni-docs-theme to rubygems.org.
 
+To publish a new version:
+* Bump the version in the fni-docs-theme.gemspec
+* Run the Publish Gem Github Action
+
 ## License
 
 The theme is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
