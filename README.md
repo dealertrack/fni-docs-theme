@@ -29,6 +29,14 @@ plugins:
 
 [View the documentation](https://pmarsceill.github.io/just-the-docs/) for usage information.
 
+## Local Testing
+
+```bash
+> ./serve
+```
+
+Access the site at http://localhost:4000/fni-docs-theme/
+
 ## Publishing
 
 This theme/plugin is published as fni-docs-theme to rubygems.org.

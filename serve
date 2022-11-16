@@ -1,6 +1,11 @@
 #!/bin/sh
 
+rm -rf _site
 rm -rf .jekyll-cache
 rm -rf .jekyll-metadata
 
-bundle exec jekyll serve --host localhost --incremental --profile
+# bundle exec jekyll serve --host localhost --incremental --profile
+
+docker build -t fni-docs-theme .
+docker run -it --mount src="$(pwd)/docs",target=/usr/src/app/docs,type=bind \
+  -p 4000:4000 -p 35729:35729 fni-docs-theme

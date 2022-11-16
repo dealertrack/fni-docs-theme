@@ -15,4 +15,4 @@ RUN bundle exec jekyll build
 RUN bundle exec jekyll doctor
 
 EXPOSE 4000
-CMD bundle exec jekyll serve --host localhost
+CMD bundle exec jekyll serve --host 0.0.0.0 --livereload --incremental
