@@ -10,7 +10,6 @@ module NavGenerator
       
       # Attach nav data to the default layout
       site.layouts['default'].data['nav'] = nav
-      site.layouts['default'].data['ol'] = breadcrumb
     end
 
     def nav_for_parent(page_list, parentPage, grandParentPage)
@@ -45,6 +44,11 @@ module NavGenerator
         # Attach parent/grandparent URLs for rendering breadcrumb
         page.data['parent_url'] = parentPage&.url
         page.data['grand_parent_url'] = grandParentPage&.url
+
+        {
+          'parent_url' = parentPage&.url
+          'grand_parent_url' = grandParentPage&.url
+        }
       }
     end
   end
