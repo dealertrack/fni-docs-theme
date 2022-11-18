@@ -46,8 +46,8 @@ module NavGenerator
         page.data['grand_parent_url'] = grandParentPage&.url
 
         {
-          'parent_url' = parentPage&.url,
-          'grand_parent_url' = grandParentPage&.url
+          'parent_url' => parentPage&.url,
+          'grand_parent_url' => grandParentPage&.url
         }
       }
     end
