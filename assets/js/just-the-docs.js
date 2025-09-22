@@ -38,16 +38,45 @@ function initNav() {
   const siteNav = document.getElementById('site-nav');
   const mainHeader = document.getElementById('main-header');
   const menuButton = document.getElementById('menu-button');
+  const closeButton = document.getElementById('close-button');
 
-  jtd.addEvent(menuButton, 'click', function(e){
-    e.preventDefault();
+  // Create mobile overlay
+  let mobileOverlay = document.querySelector('.mobile-overlay');
+  if (!mobileOverlay) {
+    mobileOverlay = document.createElement('div');
+    mobileOverlay.className = 'mobile-overlay';
+    document.body.appendChild(mobileOverlay);
+  }
 
+  function toggleNav() {
     if (menuButton.classList.toggle('nav-open')) {
       siteNav.classList.add('nav-open');
       mainHeader.classList.add('nav-open');
+      document.body.classList.add('nav-open');
     } else {
       siteNav.classList.remove('nav-open');
       mainHeader.classList.remove('nav-open');
+      document.body.classList.remove('nav-open');
+    }
+  }
+
+  jtd.addEvent(menuButton, 'click', function(e){
+    e.preventDefault();
+    toggleNav();
+  });
+
+  if (closeButton) {
+    jtd.addEvent(closeButton, 'click', function(e){
+      e.preventDefault();
+      toggleNav();
+    });
+  }
+
+  // Close nav when clicking overlay
+  jtd.addEvent(mobileOverlay, 'click', function(e){
+    e.preventDefault();
+    if (document.body.classList.contains('nav-open')) {
+      toggleNav();
     }
   });
 

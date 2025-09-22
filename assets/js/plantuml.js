@@ -1,4 +1,3 @@
-
 window.jtd.onReady(() => {
   initDiags()
 })
@@ -8,20 +7,21 @@ async function initDiags() {
   const defaultHeight = 400
 
   const curPath = window.location.pathname
-  const diags = document.getElementsByClassName('plantuml-diagram')
+  const diags = document.getElementsByClassName("plantuml-diagram")
 
   for (const diag of diags) {
     const src = diag.dataset.diagramSrc
-    const svgSrc = src.replace('.iuml', '.svg')
-    const diagCont = diag.getElementsByClassName('plantuml-diagram-inner')[0]
-    const viewCont = diag.getElementsByClassName('plantuml-diagram-open')[0]
+    const svgSrc = src.replace(".iuml", ".svg")
+    const diagCont = diag.getElementsByClassName("plantuml-diagram-inner")[0]
+    const viewCont = diag.getElementsByClassName("plantuml-diagram-open")[0]
     const width = diag.dataset.diagramWidth || defaultWidth
     const height = diag.dataset.diagramHeight || defaultHeight
 
     // Fetch the svg
     const svgRes = await fetch(curPath + svgSrc)
     if (!svgRes.ok) {
-      diagCont.innerHTML = '<div class="error-msg">Failed to retrieve diagram</div>'
+      diagCont.innerHTML =
+        '<div class="error-msg">Failed to retrieve diagram</div>'
       continue
     }
 
@@ -31,11 +31,11 @@ async function initDiags() {
     const svg = await svgRes.text()
 
     diagCont.innerHTML = svg
-    const svgElement = diag.getElementsByTagName('svg')[0]
+    const svgElement = diag.getElementsByTagName("svg")[0]
 
     svgElement.style.width = width
     svgElement.style.height = height
-    svgElement.style.backgroundColor = '#333'
+    svgElement.style.backgroundColor = "#333"
 
     const spz = svgPanZoom(svgElement, {
       zoomEnabled: true,
@@ -44,10 +44,10 @@ async function initDiags() {
       center: true,
       dblClickZoomEnabled: false,
       customEventsHandler: {
-        init: options => {
+        init: (options) => {
           // Double click to toggle fullscreen
-          options.svgElement.addEventListener('dblclick', () => {
-            if (options.svgElement.style.position === 'fixed') {
+          options.svgElement.addEventListener("dblclick", () => {
+            if (options.svgElement.style.position === "fixed") {
               options.svgElement.style.position = null
               options.svgElement.style.left = null
               options.svgElement.style.top = null
@@ -55,10 +55,10 @@ async function initDiags() {
               options.svgElement.style.width = width
               options.svgElement.style.height = height
             } else {
-              options.svgElement.style.position = 'fixed'
-              options.svgElement.style.left = '20px'
-              options.svgElement.style.top = '20px'
-              options.svgElement.style.zIndex = '9999'
+              options.svgElement.style.position = "fixed"
+              options.svgElement.style.left = "20px"
+              options.svgElement.style.top = "20px"
+              options.svgElement.style.zIndex = "9999"
               options.svgElement.style.width = getWidth() - 40
               options.svgElement.style.height = getHeight() - 40
             }
@@ -68,8 +68,8 @@ async function initDiags() {
             options.instance.fit()
             options.instance.center()
           })
-        }
-      }
+        },
+      },
     })
   }
 }
@@ -81,7 +81,7 @@ function getWidth() {
     document.body.offsetWidth,
     document.documentElement.offsetWidth,
     document.documentElement.clientWidth
-  );
+  )
 }
 
 function getHeight() {
@@ -91,5 +91,5 @@ function getHeight() {
     document.body.offsetHeight,
     document.documentElement.offsetHeight,
     document.documentElement.clientHeight
-  );
+  )
 }

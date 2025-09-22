@@ -38,6 +38,12 @@ layout: table_wrappers
         <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
       </svg>
     </symbol>
+    <symbol id="svg-close" viewBox="0 0 24 24">
+      <title>Close</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+        <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </symbol>
   </svg>
 
   <div class="side-bar">
@@ -45,6 +51,9 @@ layout: table_wrappers
       <a href="{{ '/' | absolute_url }}" class="site-title lh-tight">{% include_cached title.html %}</a>
       <a href="#" id="menu-button" class="site-button">
         <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+      </a>
+      <a href="#" id="close-button" class="site-button close-button">
+        <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-close"></use></svg>
       </a>
     </div>
     <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav" data-page-url="{{ page.url }}" data-page-parent="{{ page.parent }}" data-page-grand-parent="{{ page.grand_parent }}">

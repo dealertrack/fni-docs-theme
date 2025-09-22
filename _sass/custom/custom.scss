@@ -1,0 +1,272 @@
+// Custom styles for FNI Docs Theme
+
+// Mobile Navigation Fixes
+@media (max-width: #{$content-width - 1}) {
+  // Ensure menu button is always visible on mobile when nav is closed
+  #menu-button {
+    display: flex !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 3.5rem;
+    width: 3.5rem;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    z-index: 101;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      pointer-events: none;
+    }
+  }
+
+  // Place close button in the side-bar header
+  .side-bar .site-header .close-button {
+    display: none !important;
+  }
+
+  // When nav is open, show close button in header
+  .nav-open .side-bar .site-header {
+    #menu-button {
+      display: none !important;
+    }
+
+    .close-button {
+      display: flex !important;
+      position: absolute;
+      right: $gutter-spacing-sm;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 2.5rem;
+      width: 2.5rem;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      z-index: 1001;
+
+      svg {
+        width: 24px;
+        height: 24px;
+        color: $body-text-color;
+        pointer-events: none;
+      }
+
+      &:hover {
+        background: rgba($body-text-color, 0.1);
+        border-radius: $border-radius;
+      }
+    }
+  }
+
+
+  // Fix mobile header
+  .site-header {
+    min-height: 3.5rem;
+    height: 3.5rem;
+    position: relative;
+  }
+
+  // Fix site title on mobile
+  .site-title {
+    font-size: 1.125rem;
+    padding-right: $sp-8; // Make room for buttons
+  }
+}
+
+// Fix button text cutoff globally
+.btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  padding: 0.5em 1em !important;
+  margin: 0.25em !important;
+  font-size: inherit !important;
+  line-height: 1.5 !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  min-height: 2.5em !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+
+  // Override any conflicting styles
+  &:not(.btn-sm):not(.btn-xs):not(.btn-lg) {
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+  }
+}
+
+// Fix main content text cutoff
+.main-content {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+// Ensure sidebar is visible on desktop
+@include mq(md) {
+  .side-bar {
+    transform: translateX(0) !important;
+    position: fixed !important;
+    display: flex !important;
+  }
+
+  // Hide mobile nav buttons on desktop
+  #menu-button,
+  .close-button {
+    display: none !important;
+  }
+}
+
+// Fix inline links display
+a {
+  display: inline;
+  vertical-align: baseline;
+}
+
+// Mobile navigation additional fixes
+@media (max-width: #{$content-width - 1}) {
+  // Fix navigation padding and spacing
+  .side-bar {
+    .site-nav {
+      padding: $sp-3 0;
+    }
+  }
+
+  // Ensure navigation items don't overlap
+  .nav-list-item {
+    .nav-list-link {
+      width: 100%;
+      white-space: normal;
+      word-wrap: break-word;
+      hyphens: auto;
+    }
+
+    // Fix child navigation items
+    > .nav-list {
+      .nav-list-link {
+        padding-left: $sp-6;
+      }
+    }
+  }
+
+  // Fix expander positioning
+  .nav-list-expander {
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  // Ensure proper contrast in dark mode
+  .nav-list-link {
+    color: $body-text-color;
+
+    &:hover,
+    &.active {
+      color: $body-heading-color;
+    }
+  }
+
+  // Better spacing for footer
+  .site-footer {
+    padding: $sp-3;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  // Fix navigation dropdown position
+  .nav-list-expander {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  // Clean up mobile navigation links
+  .nav-list-link {
+    display: flex;
+    align-items: center;
+    padding: $sp-3 $gutter-spacing-sm;
+    min-height: 44px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+
+    &:hover,
+    &.active {
+      background-color: rgba($feedback-color, 0.1);
+      background-image: none;
+    }
+  }
+
+  // Fix navigation expander button
+  .nav-list-expander {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba($feedback-color, 0.1);
+      background-image: none;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  // Clean up active state
+  .nav-list-item.active > .nav-list-expander svg {
+    transform: rotate(90deg);
+  }
+
+  // Remove gradient backgrounds
+  .nav-list-link,
+  .nav-list-expander,
+  .site-button {
+    background-image: none !important;
+  }
+}
+
+// Fix table spacing on mobile
+@media (max-width: #{$content-width - 1}) {
+  .table-wrapper {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  // Ensure proper content padding on mobile
+  .main-content {
+    padding-left: $gutter-spacing-sm;
+    padding-right: $gutter-spacing-sm;
+  }
+
+  // Fix table overflow
+  table {
+    font-size: 0.875rem;
+  }
+
+  th, td {
+    padding: $sp-2;
+    min-width: auto;
+  }
+}

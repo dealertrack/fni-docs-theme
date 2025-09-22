@@ -19,9 +19,17 @@
   }
 
   a {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    overflow: visible;
+    text-overflow: unset;
+    white-space: normal;
+    word-wrap: break-word;
+    vertical-align: baseline;
+  }
+
+  // Better readability on mobile
+  @media (max-width: #{$content-width - 1}) {
+    font-size: 16px;
+    line-height: 1.6;
   }
 
   ul,
