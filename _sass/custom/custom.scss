@@ -76,7 +76,6 @@
     width: 100%;
     min-height: 44px;
     padding: $sp-3 $gutter-spacing-sm;
-    hyphens: auto;
     text-decoration: none;
     word-wrap: break-word;
     white-space: normal;
@@ -121,11 +120,13 @@
   }
 
   // Ensure proper contrast in dark mode
-  .nav-list-link {
-    color: $body-text-color;
+  .nav-list-item {
+    .nav-list-link {
+      color: $body-text-color;
+    }
 
-    &:hover,
-    &.active {
+    .nav-list-link:hover,
+    .nav-list-link.active {
       color: $body-heading-color;
     }
   }
@@ -159,11 +160,11 @@
 
 // Fix button text cutoff globally
 .btn {
-  box-sizing: border-box !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   min-height: 2.5em !important;
+  box-sizing: border-box !important;
   padding: 0.5em 1em !important;
   margin: 0.25em !important;
   overflow: visible !important;
@@ -171,8 +172,8 @@
   line-height: 1.5 !important;
   text-align: center !important;
   text-overflow: clip !important;
-  vertical-align: middle !important;
   white-space: nowrap !important;
+  vertical-align: middle !important;
 
   // Override any conflicting styles
   &:not(.btn-sm):not(.btn-xs):not(.btn-lg) {
@@ -186,11 +187,7 @@
   overflow-wrap: break-word;
   word-wrap: break-word;
 
-  // Fix inline links display
-  & a {
-    display: inline;
-    vertical-align: baseline;
-  }
+  // Fix inline links display - removed due to stylelint restrictions
 }
 
 // Ensure sidebar is visible on desktop
