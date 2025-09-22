@@ -42,17 +42,17 @@
   }
 
   // Better heading sizes on mobile
-  h1,
+  .main-content h1,
   .text-alpha {
     @include fs-6;
   }
 
-  h2,
+  .main-content h2,
   .text-beta {
     @include fs-5;
   }
 
-  h3,
+  .main-content h3,
   .text-gamma {
     @include fs-4;
   }
@@ -60,22 +60,24 @@
 
 // Touch-friendly link spacing
 @media (max-width: #{$content-width - 1}) {
-  .main-content a {
-    display: inline-block;
-    padding: $sp-1 0;
+  .main-content {
+    a {
+      display: inline-block;
+      padding: $sp-1 0;
+    }
   }
 }
 
 // Responsive tables
 @media (max-width: #{$content-width - 1}) {
   .table-wrapper {
-    margin-left: -$gutter-spacing-sm;
     margin-right: -$gutter-spacing-sm;
+    margin-left: -$gutter-spacing-sm;
     border-radius: 0;
   }
 
-  th,
-  td {
+  .table-wrapper th,
+  .table-wrapper td {
     @include fs-2;
     min-width: 80px;
     padding: $sp-1 $sp-2;
@@ -91,7 +93,7 @@
     }
   }
 
-  pre {
+  .highlighter-rouge pre {
     font-size: 14px;
   }
 }

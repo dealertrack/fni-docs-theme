@@ -39,8 +39,8 @@
 
       // Fix mobile navigation padding
       @media (max-width: #{$content-width - 1}) {
-        padding-left: $gutter-spacing-sm;
         padding-right: $gutter-spacing-sm;
+        padding-left: $gutter-spacing-sm;
       }
 
       @include mq(md) {

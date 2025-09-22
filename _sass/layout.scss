@@ -199,39 +199,39 @@ body {
 }
 
 // Mobile navigation with smooth animation
-.site-nav {
-  @media (max-width: #{$content-width - 1}) {
+@media (max-width: #{$content-width - 1}) {
+  .site-nav {
     position: fixed;
     top: 0;
     left: -100%;
+    z-index: 1000;
     width: 80%;
     max-width: 320px;
     height: 100vh;
-    z-index: 1000;
-    background-color: $sidebar-color;
-    transition: left 0.3s ease-in-out;
-    overflow-y: auto;
     padding-top: $header-height;
+    overflow-y: auto;
+    background-color: $sidebar-color;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    transition: left 0.3s ease-in-out;
   }
 }
 
-.nav-open .site-nav {
-  @media (max-width: #{$content-width - 1}) {
+@media (max-width: #{$content-width - 1}) {
+  .nav-open .site-nav {
     left: 0;
   }
 }
 
 // Mobile overlay
 .mobile-overlay {
-  display: none;
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
+  left: 0;
   z-index: 999;
+  display: none;
+  background: rgba(0, 0, 0, 0.3);
 
   @media (max-width: #{$content-width - 1}) {
     .nav-open & {
@@ -241,10 +241,12 @@ body {
 }
 
 // Site button hover states
-.site-button:hover {
-  background-image: linear-gradient(
-    -90deg,
-    rgba($feedback-color, 1) 0%,
-    rgba($feedback-color, 0.8) 100%
-  );
+@media (min-width: #{$content-width}) {
+  .site-button:hover {
+    background-image: linear-gradient(
+      -90deg,
+      rgba($feedback-color, 1) 0%,
+      rgba($feedback-color, 0.8) 100%
+    );
+  }
 }
