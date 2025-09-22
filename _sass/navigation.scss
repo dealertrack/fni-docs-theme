@@ -9,6 +9,11 @@
   margin-bottom: 0;
   list-style: none;
 
+  // Add padding on mobile for better touch targets
+  @media (max-width: #{$content-width - 1}) {
+    padding: $sp-2 0;
+  }
+
   .nav-list-item {
     @include fs-4;
     position: relative;
@@ -30,6 +35,12 @@
       } @else {
         padding-right: $gutter-spacing-sm;
         padding-left: $nav-list-item-height-sm;
+      }
+
+      // Fix mobile navigation padding
+      @media (max-width: #{$content-width - 1}) {
+        padding-right: $gutter-spacing-sm;
+        padding-left: $gutter-spacing-sm;
       }
 
       @include mq(md) {
@@ -72,6 +83,7 @@
       padding-bottom: calc($nav-list-item-height-sm / 4);
       padding-left: calc($nav-list-item-height-sm / 4);
       color: $link-color;
+      cursor: pointer;
 
       @include mq(md) {
         width: $nav-list-item-height;
@@ -193,6 +205,12 @@
   padding-left: 0;
   margin-bottom: $sp-3;
   list-style: none;
+
+  // Better mobile breadcrumbs
+  @media (max-width: #{$content-width - 1}) {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
 .breadcrumb-nav-list-item {
