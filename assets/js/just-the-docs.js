@@ -23,6 +23,7 @@ jtd.onReady = function(ready) {
 
 // Show/hide mobile menu
 
+
 function initNav() {
   jtd.addEvent(document, 'click', function(e){
     var target = e.target;
@@ -94,6 +95,7 @@ function initNav() {
   const searchInput = document.getElementById('search-input');
   const searchButton = document.getElementById('search-button');
   const mobileSearchButton = document.getElementById('mobile-search-button');
+
 
   {%- if site.search.button %}
   if (searchButton) {
@@ -225,6 +227,10 @@ function searchLoaded(index, docs) {
 
   function hideSearch() {
     document.documentElement.classList.remove('search-active');
+    document.body.classList.remove('search-active');
+    if (mainHeader) {
+      mainHeader.classList.remove('nav-open');
+    }
   }
 
   function update() {
@@ -232,7 +238,11 @@ function searchLoaded(index, docs) {
 
     var input = searchInput.value;
     if (input === '') {
-      hideSearch();
+      // Only hide search if it's not already active/visible
+      if (!document.body.classList.contains('search-active') &&
+          !document.documentElement.classList.contains('search-active')) {
+        hideSearch();
+      }
     } else {
       showSearch();
       // scroll search input into view, workaround for iOS Safari
@@ -537,7 +547,22 @@ function searchLoaded(index, docs) {
   });
 
   jtd.addEvent(document, 'click', function(e){
-    if (e.target != searchInput) {
+    // Check if the click is on a search button or inside one
+    var target = e.target;
+    var isSearchButton = false;
+
+    while (target && target !== document) {
+      if (target.id === 'search-button' ||
+          target.id === 'mobile-search-button' ||
+          target.classList.contains('search-button') ||
+          target.classList.contains('mobile-search-button')) {
+        isSearchButton = true;
+        break;
+      }
+      target = target.parentNode;
+    }
+
+    if (e.target != searchInput && !isSearchButton) {
       hideSearch();
     }
   });
