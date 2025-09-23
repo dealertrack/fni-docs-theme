@@ -53,6 +53,16 @@ function initNav() {
       siteNav.classList.add('nav-open');
       mainHeader.classList.add('nav-open');
       document.body.classList.add('nav-open');
+
+      // Clear search state when nav opens to prevent overlay conflicts
+      {%- if site.search_enabled != false %}
+      if (searchInput && document.body.classList.contains('search-active')) {
+        searchInput.value = '';
+        document.body.classList.remove('search-active');
+        document.documentElement.classList.remove('search-active');
+        mainHeader.classList.remove('nav-open');
+      }
+      {%- endif %}
     } else {
       siteNav.classList.remove('nav-open');
       mainHeader.classList.remove('nav-open');
@@ -128,6 +138,26 @@ function initNav() {
           mainHeader.classList.remove('nav-open');
         }
       }, 150);
+    });
+
+    // Function to clear search state when closing nav
+    function clearSearchStateIfEmpty() {
+      if (!searchInput.value.trim()) {
+        document.body.classList.remove('search-active');
+        document.documentElement.classList.remove('search-active');
+      }
+    }
+
+    // Add search state clearing to nav close events
+    if (closeButton) {
+      jtd.addEvent(closeButton, 'click', function(e){
+        setTimeout(clearSearchStateIfEmpty, 50);
+      });
+    }
+
+    // Also clear search state when clicking overlay to close nav
+    jtd.addEvent(mobileOverlay, 'click', function(e){
+      setTimeout(clearSearchStateIfEmpty, 50);
     });
   }
   {%- endif %}
