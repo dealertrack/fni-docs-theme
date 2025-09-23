@@ -53,6 +53,16 @@ function initNav() {
       siteNav.classList.add('nav-open');
       mainHeader.classList.add('nav-open');
       document.body.classList.add('nav-open');
+
+      // Clear search state when nav opens to prevent overlay conflicts
+      {%- if site.search_enabled != false %}
+      if (searchInput && document.body.classList.contains('search-active')) {
+        searchInput.value = '';
+        document.body.classList.remove('search-active');
+        document.documentElement.classList.remove('search-active');
+        mainHeader.classList.remove('nav-open');
+      }
+      {%- endif %}
     } else {
       siteNav.classList.remove('nav-open');
       mainHeader.classList.remove('nav-open');
@@ -80,16 +90,76 @@ function initNav() {
     }
   });
 
-  {%- if site.search_enabled != false and site.search.button %}
+  {%- if site.search_enabled != false %}
   const searchInput = document.getElementById('search-input');
   const searchButton = document.getElementById('search-button');
+  const mobileSearchButton = document.getElementById('mobile-search-button');
 
-  jtd.addEvent(searchButton, 'click', function(e){
-    e.preventDefault();
+  {%- if site.search.button %}
+  if (searchButton) {
+    jtd.addEvent(searchButton, 'click', function(e){
+      e.preventDefault();
 
-    mainHeader.classList.add('nav-open');
-    searchInput.focus();
-  });
+      mainHeader.classList.add('nav-open');
+      if (searchInput) {
+        searchInput.focus();
+      }
+    });
+  }
+  {%- endif %}
+
+  // Mobile search button functionality
+  if (mobileSearchButton) {
+    jtd.addEvent(mobileSearchButton, 'click', function(e){
+      e.preventDefault();
+
+      if (searchInput) {
+        mainHeader.classList.add('nav-open');
+        document.body.classList.add('search-active');
+        document.documentElement.classList.add('search-active');
+        searchInput.focus();
+      }
+    });
+  }
+
+  // Handle search input focus/blur to manage state
+  if (searchInput) {
+    jtd.addEvent(searchInput, 'focus', function(e){
+      document.body.classList.add('search-active');
+      document.documentElement.classList.add('search-active');
+    });
+
+    jtd.addEvent(searchInput, 'blur', function(e){
+      // Delay removal to allow for click events
+      setTimeout(function() {
+        if (!searchInput.value.trim()) {
+          document.body.classList.remove('search-active');
+          document.documentElement.classList.remove('search-active');
+          mainHeader.classList.remove('nav-open');
+        }
+      }, 150);
+    });
+
+    // Function to clear search state when closing nav
+    function clearSearchStateIfEmpty() {
+      if (!searchInput.value.trim()) {
+        document.body.classList.remove('search-active');
+        document.documentElement.classList.remove('search-active');
+      }
+    }
+
+    // Add search state clearing to nav close events
+    if (closeButton) {
+      jtd.addEvent(closeButton, 'click', function(e){
+        setTimeout(clearSearchStateIfEmpty, 50);
+      });
+    }
+
+    // Also clear search state when clicking overlay to close nav
+    jtd.addEvent(mobileOverlay, 'click', function(e){
+      setTimeout(clearSearchStateIfEmpty, 50);
+    });
+  }
   {%- endif %}
 }
 
