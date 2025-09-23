@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "fni-docs-theme"
-  spec.version       = "0.6.4"
+  spec.version       = "0.6.5"
   spec.authors       = ["Patrick Marsceill", "Ken Hill"]
   spec.email         = ["patrick.marsceill@gmail.com", "rubygems@hill.ae"]
 
