@@ -138,8 +138,87 @@
   align-items: center;
 }
 
+// COMPLETE MOBILE BUTTON OVERHAUL - Force visual separation
+@media (max-width: 50rem) {
+  .site-header {
+    position: relative !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding-right: 0 !important;
+    min-height: 60px !important;
+  }
+
+  .mobile-search-button {
+    position: absolute !important;
+    right: 60px !important; // Closer to hamburger (was 80px)
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 999 !important;
+    width: 44px !important; // Slightly smaller
+    height: 44px !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    // Hide when search is active to prevent duplicate icons
+    body.search-active & {
+      display: none !important;
+    }
+  }
+
+  #menu-button {
+    position: absolute !important;
+    right: 8px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 998 !important;
+    width: 44px !important; // Match search button size
+    height: 44px !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    // Hide when nav is open to prevent overlap with close button
+    .nav-open & {
+      display: none !important;
+    }
+  }
+
+  // Close button positioning - ensure it doesn't overlap
+  #close-button {
+    position: absolute !important;
+    right: 8px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 1000 !important;
+    width: 44px !important;
+    height: 44px !important;
+    margin: 0 !important;
+    display: none !important; // Hidden by default
+    align-items: center !important;
+    justify-content: center !important;
+
+    // Show only when nav is open
+    .nav-open & {
+      display: flex !important;
+    }
+  }
+}
+
+// Close button positioning
+#close-button {
+  order: 3;
+  z-index: 200 !important; // Highest for close button
+  flex-shrink: 0 !important; // Prevent shrinking
+}
+
+// This section is now handled by the media query above
+
 @include mq(md) {
-  .site-header .site-button {
+  .site-header .site-button:not(.mobile-search-button) {
     display: none;
   }
 }
